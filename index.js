@@ -12,7 +12,7 @@ app.use("/api/v1/admin", adminRouter);
 app.use("/api/v1/course", courseRouter);
 
 async function main(){
-await mongoose.connect("mongodb+srv://gaurav:sharmagaurav123%40@cluster0.lvdrixb.mongodb.net/coursera-app")
+await mongoose.connect("")
 app.listen(3000);
 console.log("listening on port 3000")
 }

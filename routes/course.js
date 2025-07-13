@@ -17,3 +17,4 @@ courseRouter.get("/preview",(req,res)=>{
 module.exports={
     courseRouter:courseRouter
 }
+

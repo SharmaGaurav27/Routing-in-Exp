@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
-console.log("connected to")
-mongoose.connect("")
+
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;
 
@@ -10,7 +9,7 @@ const userSchema = new Schema({
     firstName:String,
     lastName:String
 
-});
+}); 
 
 const adminSchema = new Schema({
     email:{type:String ,unique:true},

@@ -1,7 +1,7 @@
 const{ Router } = require("express");
 const{ userModel } = require("../db");
 const jwt = require("jsonwebtoken");
-const JWT_SECRET_PASSWORD  = "Gaurav276726";
+const { JWT_USER_PASSWORD } = require("../Config");
 const userRouter = Router();
 
 
@@ -35,7 +35,7 @@ userRouter.post("/sign",async (req,res)=>{
    if(user){
     const token = jwt.sign({
           id:user._id
-    },JWT_SECRET_PASSWORD)
+    },JWT_USER_PASSWORD)
 
     res.json({
         token:token

@@ -2,6 +2,8 @@ const{ Router } = require("express");
 const{ userModel } = require("../db");
 const jwt = require("jsonwebtoken");
 const { JWT_USER_PASSWORD } = require("../Config");
+const { userMiddleware } = require("../Middleware/user");
+const { purchaseModel } = require ("../db");
 const userRouter = Router();
 
 
@@ -24,38 +26,45 @@ userRouter.post("/signup",async (req, res) => {
 
     });
 
-userRouter.post("/sign",async (req,res)=>{
-   const {email , password} = req.body;
+userRouter.post("/signin",async (req,res)=>{
+const {email , password} = req.body;
 
-   const user = await userModel.findOne({
+const user = await userModel.findOne({
     email:email,
     password:password
-   })
+})
 
-   if(user){
+if(user){
     const token = jwt.sign({
-          id:user._id
+        id:user._id
     },JWT_USER_PASSWORD)
 
     res.json({
         token:token
     })
-  }
-  else{
+}
+else{
     res.status(404).json({
-     message:"Incorrect Credentials"
-  })
+    message:"Incorrect Credentials"
+})
 
-  }
-  
+}
+
 });
 
-userRouter.get("/purchases",(req,res)=>{
+userRouter.get("/purchases",userMiddleware,async (req,res)=>{
+
+    const userId = req.userId;
+    const purchases =  await purchaseModel.find({
+        userId
+    })
     res.json({
-        message:"SignUp End-Point"
+        purchases
     })
 });
 
 module.exports={
     userRouter:userRouter
 }
+
+

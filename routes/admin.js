@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const adminRouter = Router();
-const { adminModel, courseModel } = require("../db");
+const { adminModel } = require("../db");
+const{  courseModel } = require("../db");
 const jwt = require("jsonwebtoken");
 // brcypt, zod, jsonwebtoken
 const  { JWT_ADMIN_PASSWORD } = require("../Config");

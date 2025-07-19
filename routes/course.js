@@ -1,5 +1,5 @@
 const { Router } = require("express")
-
+const { courseModel, purchaseModel } = require("../db");
 const courseRouter = Router();
 
 courseRouter.post("/purchase",async (req,res)=>{
